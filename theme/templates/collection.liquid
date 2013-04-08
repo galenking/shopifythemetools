@@ -1,0 +1,29 @@
+<h2>{{ collection.title }}</h2>
+{% if collection.description != empty %}
+{{ collection.description }}
+{% endif %}
+
+{% if collection.products.size > 0 %}
+<textarea rows="25" style="width: 100%">
+{% for group in collection.all_vendors %}<fieldset>
+  <legend>{{ group }}</legend>
+  {% for product in collection.products %}{% if product.vendor == group %}{% if product.type == "Heading" %}
+  <h3>{{ product.title }}</h3>{% if product.description %}
+  {{ product.description }}{% endif %}
+  {% else %}
+  <table>{% assign product_handle = product.handle %}
+    <tr>
+      <th><label for="{{ product_handle }}">{{ product.title }}</label></th>
+      <td>{% capture field_include %}{{ product.type | prepend: '_' | downcase }}{% endcapture %}
+        {% include field_include %}{% if product.description %}
+        {{ product.description }}{% endif %}
+      </td>
+    </tr>
+  </table>
+  {% endif %}{% endif %}{% endfor %}
+</fieldset>{% endfor %}
+</textarea>
+      
+{% else %}    
+<strong>No settings for this theme. You can add them as products at <a href="/admin/products">in the back-end</a>.</strong>
+{% endif %}

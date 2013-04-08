@@ -1,0 +1,7 @@
+@import "bootstrap/lib/bootstrap.scss";
+
+body {
+  padding-top: $navbarHeight + 20px;
+}
+
+@import "bootstrap/lib/responsive.scss";

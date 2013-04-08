@@ -1,0 +1,1 @@
+<input type="file" name="{{ product_handle }}" id="{{ product_handle }}"{% if product.price > 0 %} data-max-width="{{ product.price | divided_by: 100 }}"{% endif %} {% if product.compare_at_price > 0 %}data-max-height="{{ product.compare_at_price | divided_by: 100 }}"{% endif %} />
